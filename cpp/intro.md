@@ -1,28 +1,28 @@
-# Un projet simple
+# A simple project
 
-Il s'agit d'un petit guide pour vous aider à démarrer votre premier projet C++. Un exemple de projet est disponible à [https://dev.glassworks.tech:18081/courses/raytracer/raytracer-sample](https://dev.glassworks.tech:18081/courses/raytracer/raytracer-sample).
+This is a short guide to help you get started with your first C++ project. A sample project is available at [https://dev.glassworks.tech/courses/raytracer/raytracer-sample](https://dev.glassworks.tech/courses/raytracer/raytracer-sample).
 
-Vous êtes libre d'utiliser l'environnement logiciel de votre choix, mais ce guide vous aidera à utiliser Visual Studio Code.
+You are free to use the software environment of your choice, but this guide will help you use Visual Studio Code.
 
 ## Extension VS Code
 
-Visual Studio Code a un excellent support pour C++, vous pouvez [suivre ce guide](https://code.visualstudio.com/docs/languages/cpp) pour installer l'extension.
+Visual Studio Code has excellent support for C++. You can [follow this guide](https://code.visualstudio.com/docs/languages/cpp) to install the extension.
 
-Vous devrez installer un compilateur C++ (s'il n'est pas déjà présent) pour votre système d'exploitation :
+You will need to install a C++ compiler (if it is not already present) for your operating system:
 
-* [gcc sur windows](https://code.visualstudio.com/docs/cpp/config-mingw)
-* [cmake sur macos](https://code.visualstudio.com/docs/cpp/config-clang-mac)
+* [gcc on Windows](https://code.visualstudio.com/docs/cpp/config-mingw)
+* [cmake on macOS](https://code.visualstudio.com/docs/cpp/config-clang-mac)
 
-En général, il existe d'excellents tutoriels pour débuter avec C++ [sur ce site web](https://code.visualstudio.com/docs/cpp/introvideos-cpp)
+In general, there are excellent tutorials for getting started with C++ [on this website](https://code.visualstudio.com/docs/cpp/introvideos-cpp)
 
-## Un programme « hello world
+## A “hello world” program
 
-Le petit exemple provient des guides VSCode.
+This small example comes from the VSCode guides.
 
-* [CMake pour linux](https://code.visualstudio.com/docs/cpp/cmake-linux#\_build-hello-world)
+* [CMake for Linux](https://code.visualstudio.com/docs/cpp/cmake-linux#\_build-hello-world)
 * [Cmake](https://code.visualstudio.com/docs/cpp/cmake-quickstart)
 
-Nous voulons juste créer un simple exécutable qui imprime un message sur la console. Créez le fichier `main.cpp` :
+We just want to create a simple executable that prints a message to the console. Create the file `main.cpp`:
 
 ```cpp
 #include <iostream>
@@ -43,20 +43,19 @@ int main()
 }
 ```
 
-Votre groupe peut avoir des développeurs qui utilisent plusieurs systèmes d'exploitation. Nous allons essayer de créer un système de compilation qui soit multiplateforme, en utilisant CMake.
+Your group may have developers who use multiple operating systems. We will try to create a cross-platform build system using CMake.
 
-Installez d'abord [CMake tools for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools).
+First, install [CMake tools for VSCode](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools).
+Once installed, open the VSCode Command Palette (`cmd+shift+P` or `F1`), type `CMake`, and choose `CMake: Quick Start`. Answer the following questions:
 
-Une fois installé, ouvrez la Command Palette de VSCode (`cmd+maj+P` ou `F1`), tapez `CMake` et choisissez `CMake : Quick Start`. Répondez aux questions suivantes :
+* Enter a project name
+* Choose C++
+* Do not select CTest or CPack
+* Select “Executable” (not library)
 
-* entrez un nom de projet
-* choisissez c++
-* ne sélectionnez pas CTest ou CPack
-* sélectionnez « Executable » (pas library)
+This will create the `CMakeLists.txt` file, which tells CMake how to build your project.
 
-Ceci créera le fichier `CMakeLists.txt` qui indique à CMake comment construire votre projet.
-
-Pour utiliser une version moderne de C++, nous devons activer au moins la version 11 :
+To use a modern version of C++, we need to enable at least version 11:
 
 ```txt
 cmake_minimum_required(VERSION 3.5.0)
@@ -71,33 +70,33 @@ set(CMAKE_CXX_STANDARD_REQUIRED True)
 add_executable(raytracer main.cpp)
 ```
 
-Lancez à nouveau la palette de commandes (`F1`), tapez `CMake : Quick Start`, cela va continuer le processus, en vous demandant comment vous souhaitez compiler votre projet (créer un `preset`).
+Launch the command palette again (`F1`), type `CMake: Quick Start`, which will continue the process, asking you how you want to compile your project (create a `preset`).
 
-Sélectionnez `Add a preselection`, puis `Create from compilers`. Une liste de compilateurs disponibles sur votre machine vous sera présentée. Choisissez-en un.
+Select `Add a preselection`, then `Create from compilers`. A list of compilers available on your machine will be displayed. Choose one.
 
-Puis donnez un nom à votre présélection, comme `macos-clang`, ou quelque chose que vous pourrez réutiliser.
+Then give your preselection a name, such as `macos-clang`, or something you can reuse.
 
-Vous verrez apparaître le fichier `CMakePresets.json`, contenant votre configuration.
+You will see the `CMakePresets.json` file appear, containing your configuration.
 
-Chaque membre de l'équipe peut avoir à ajouter son propre présent en fonction de son architecture.
+Each team member may need to add their own preset depending on their architecture.
 
-Une fois configuré, vous verrez dans la barre du bas des options pour construire et exécuter votre application :
+Once configured, you will see options in the bottom bar to build and run your application:
 
 ![](img/build.png)
 
-Alternativement, vous pouvez naviguer dans le répertoire `build` ou `out`, et taper :
+Alternatively, you can navigate to the `build` or `out` directory and type:
 
 ```bash
 make
 ```
 
-Ceci générera votre exécutable dans le même répertoire. J'ai appelé le mien `raytracer`, pour pouvoir le lancer en utilisant :
+This will generate your executable in the same directory. I named mine `raytracer`, so I can launch it using:
 
 ```bash
 ./raytracer
 ```
 
-Si vous exécutez votre projet, vous devriez voir la sortie dans le terminal :
+If you run your project, you should see the output in the terminal:
 
 ```
 Hello C++ World from VS Code and the C++ extension! 

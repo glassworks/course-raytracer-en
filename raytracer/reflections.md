@@ -1,46 +1,44 @@
-# Réflexions
+# Reflections
+Once we have calculated the color at a point, we may want to accumulate the reflections from other objects at that point.
 
-Une fois que nous avons calculé la couleur en un point, nous pouvons vouloir accumuler les réflexions d'autres objets en ce point.
-
-Pour ce faire, il faut lancer un rayon dans une direction autour de la normale.
+To do this, we need to cast a ray in a direction around the normal.
 
 ```
 pixel = pixel + castRay(P, reflectDirection)
 ```
 
-Nous répétons le processus de diffusion des rayons et ajoutons la couleur renvoyée à la couleur actuelle. En réalité, nous appliquerions un multiplicateur pour atténuer la couleur de réflexion :
+We repeat the ray tracing process and add the reflected color to the current color. In reality, we would apply a multiplier to attenuate the reflection color:
 
 
 ```
 pixel = pixel + sphere.reflectFactor * castRay(P, reflectDirection)
 ```
 
-Mais comment calculer la direction de la réflexion ?
+But how do you calculate the direction of reflection?
 
-Considérez l'image :
+Consider the image:
 
 ![](./img/reflection1.png)
 
-Nous devons calculer le vecteur `pr` qui est une réflexion de `op` autour de la normale `n`.
+We need to calculate the vector `pr`, which is a reflection of `op` around the normal `n`.
 
-Comment faire ?
+How do we do this?
 
-Projetons d'abord `Ppr` sur la normale : 
-
-
+First, let's project `Ppr` onto the normal:
+ 
 
 ![](./img/reflection2.png)
 
-Inversons maintenant cette projection (en la multipliant par -1) et doublons-la :
+Now let's invert this projection (by multiplying it by -1) and double it:
 
 
 ![](./img/reflection3.png)
 
-Si nous ajoutons notre vecteur de direction original à notre projection, nous obtenons `r` !
+If we add our original direction vector to our projection, we get `r`!
 
 ![](./img/reflection4.png)
 
-En code, notre vecteur de réflexion est calculé comme suit :
+In code, our reflection vector is calculated as follows:
 
 ```
 let normal = normlize(P - sphere.c);

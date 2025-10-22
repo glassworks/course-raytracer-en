@@ -1,20 +1,21 @@
 # Shading
 
 
-Rappelez-vous que nous essayons de calculer la couleur d'un pixel.
 
-Supposons que notre pixel commence par être noir :
+Remember that we are trying to calculate the color of a pixel.
+
+Let's assume that our pixel starts out black:
 
 
 ```
 let pixel = (0, 0, 0)
 ```
 
-Si nous lançons un rayon et qu'il ne touche rien dans la scène, le pixel reste noir et nous passons au pixel suivant.
+If we cast a ray and it doesn't hit anything in the scene, the pixel remains black and we move on to the next pixel.
 
-Cependant, si nous touchons un objet, nous pouvons donner au pixel la **couleur ambiante** de cet objet.
+However, if we hit an object, we can give the pixel the **ambient color** of that object.
 
-Supposons que nous croisions une sphère et que nous sachions que cette sphère est d'une teinte verte foncée :
+Suppose we encounter a sphere and we know that this sphere is a dark green color:
 
 
 ```
@@ -32,26 +33,26 @@ pixel = pixel + sphere.ambientColor
 
 ```
 
-Implémentez cet algorithme dans votre code, vous aurez implémenté un **flat shader**!
+Implement this algorithm in your code, and you will have implemented a **flat shader**!
 
 {% hint style="success" %}
-Un **flat shader** ne donne aucun effet 3D de la surface. En réalité, c'est la lumière réfléchie par un objet qui lui donne sa profondeur dans le monde réel.
+A **flat shader** does not give any 3D effect to the surface. In reality, it is the light reflected by an object that gives it its depth in the real world.
 {% endhint %}
 
 
-## Shader Diffus
+## Diffuse Shader
 
-C'est la lumière de notre scène qui donne à nos objets leur profondeur. Nous devons tenir compte de la lumière et de la forme à la surface de notre point d'intersection.
+It is the light in our scene that gives our objects their depth. We must take into account the light and shape on the surface of our intersection point.
 
 ![](./img/diffuse.png)
 
-Dans l'image ci-dessus, nous avons déjà calculé que notre rayon coupe la sphère au point P. Nous voulons maintenant connaître la couleur de la sphère au point P.
+In the image above, we have already calculated that our ray intersects the sphere at point P. Now we want to know the color of the sphere at point P.
 
-Un modèle de shading simple consiste à dire que la couleur du point est relative à l'angle entre la lumière entrante et la normale au point.
+A simple shading model is to say that the color of the point is relative to the angle between the incoming light and the normal at the point.
 
-Plus l'angle est petit, plus la lumière frappe directement la surface. Plus l'angle est grand, moins la lumière frappe directement la surface.
+The smaller the angle, the more directly the light hits the surface. The larger the angle, the less directly the light hits the surface.
 
-En regardant le diagramme, nous pouvons calculer la normale d'une sphère, qui est simplement le vecteur `cp`
+Looking at the diagram, we can calculate the normal of a sphere, which is simply the vector `cp`.
 
 
 ```
@@ -64,9 +65,10 @@ The vector pointing to the light is just the position of the light subtracting t
 let pl = l - p
 ```
 
-Une fois de plus, le produit scalaire vient à notre secours ! Vous souvenez-vous que nous avons dit que si le produit du point entre deux vecteurs est 0, alors ils sont perpendiculaires ? Il s'ensuit que si le produit point est égal à 1, alors les deux vecteurs sont parallèles.
+Once again, the dot product comes to our rescue! Remember we said that if the dot product of two vectors is 0, then they are perpendicular? It follows that if the dot product is 1, then the two vectors are parallel.
 
-Nous pouvons donc utiliser le produit scalaire comme multiplicateur d'intensité ! Si l'angle avec la lumière est perpendiculaire, la valeur du produit scalaire est 0, et nous multiplions donc la couleur de notre objet par zéro (noir). Si l'angle avec la lumière est de 0 degré, la valeur du produit scalaire est de 1, et nous multiplions la couleur de notre objet par 1. 
+So we can use the dot product as an intensity multiplier! If the angle with the light is perpendicular, the value of the dot product is 0, so we multiply the color of our object by zero (black). If the angle with the light is 0 degrees, the value of the dot product is 1, so we multiply the color of our object by 1.
+ 
 
 ```
 let nCP = normalize(cp);
@@ -80,7 +82,7 @@ pixel = pixel + intensity * sphere.ambientColor
 
 ## Shading models
 
-Il existe bien sûr de nombreux modèles de shading. Nous venons de commencer le modèle qui s'appelle "Phong". Essayez d'implémenter le vôtre !
+There are, of course, many different shading models. We have just started with the model called “Phong.” Try implementing your own!
 
 
 - [Phong](https://en.wikipedia.org/wiki/Phong_reflection_model)
@@ -88,14 +90,14 @@ Il existe bien sûr de nombreux modèles de shading. Nous venons de commencer le
 - [Cook Torrance](https://garykeen27.wixsite.com/portfolio/cook-torrance-shading)
 
 
-## Ombres
+## Shadows
 
-Comment prendre en compte les ombres ?
+How do we take shadows into account?
 
-Qu'est-ce qu'une ombre ? C'est l'absence de lumière, due au fait qu'il y a un obstacle entre la lumière et une surface.
+What is a shadow? It is the absence of light, due to the fact that there is an obstacle between the light and a surface.
 
-Cela correspond parfaitement à notre notion de raytracing ! 
+This fits perfectly with our concept of raytracing! 
 
-Avant de calculer l'impact d'une lumière sur notre pixel (en utilisant le vecteur `pl` dans notre exemple ci-dessus), peut-être devrions-nous d'abord vérifier s'il n'y a pas un autre objet entre le pixel et la lumière.
+Before calculating the impact of light on our pixel (using the `pl` vector in our example above), perhaps we should first check whether there is another object between the pixel and the light.
 
-Comment faire ? Lancez un rayon ! Si notre rayon croise un autre objet dans la scène avant d'atteindre la lumière, cela signifie que notre pixel ne devrait pas recevoir de valeur de cette lumière : il est dans l'ombre !
+How can we do this? Fire a ray! If our ray crosses another object in the scene before reaching the light, this means that our pixel should not receive any value from this light: it is in the shadow!

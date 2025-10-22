@@ -1,28 +1,28 @@
-# Mathématiques vectorielles
+# Linear Algebra
 
-Nous avons besoin d'un moyen de représenter les rayons et les positions dans notre monde en 3D.
+We need a way to represent rays and positions in our 3D world.
 
 ## Positions
 
-Nous savons qu'une position en deux dimensions peut être représentée par la position horizontale `x` et la position verticale `y` sous une forme vectorielle simple :
+We know that a two-dimensional position can be represented by the horizontal position `x` and the vertical position `y` in a simple vector form:
 
 ```
 (x, y)
 ```
 
-Ainsi, un point situé à 2 unités vers la droite et à 1 unité vers le haut serait :
+Thus, a point located 2 units to the right and 1 unit up would be:
 
 ```
 (2, 1)
 ```
 
-Nous pouvons simplement ajouter une dimension ou une troisième valeur à notre vecteur pour représenter la profondeur :
+We can simply add a dimension or a third value to our vector to represent depth:
 
 ```
 (x, y, z)
 ```
 
-Si le point ci-dessus se trouve en réalité à 3 mètres (3 unités sur l'axe z) :
+If the point above is actually 3 meters away (3 units on the z-axis):
 
 ```
 (2, 1, 3)
@@ -31,56 +31,54 @@ Si le point ci-dessus se trouve en réalité à 3 mètres (3 unités sur l'axe z
 
 ## Directions
 
-Une direction peut également être représentée à l'aide d'un vecteur 3D. Imaginons que nous nous trouvions à l'origine et que nous regardions directement vers l'axe des x positifs. Cette direction peut être représentée comme suit :
+A direction can also be represented using a 3D vector. Let's imagine that we are at the origin and looking directly towards the positive x-axis. This direction can be represented as follows:
 
 ```
 (1, 0, 0)
 ```
 
-Ou si la personne regarde l'axe z positif :
+Or if the person is looking at the positive z-axis:
 
 ```
 (0, 0, 1)
 ```
 
-Vous êtes peut-être un peu perdu. Quelle est la différence entre une position et une direction ? 
+You may be a little confused. What is the difference between a position and a direction?
 
-Tout dépend de la façon dont nous interprétons notre vecteur.
+It all depends on how we interpret our vector.
 
-
-Considérons le vecteur `(1, 2)`. Nous pourrions l'interpréter comme un point dans l'espace 3D (une position) :
+Consider the vector `(1, 2)`. We could interpret it as a point in 3D space (a position):
 
 ![](./img/position.png)
 
-Nous dirons également que ce même vecteur représente une direction qui commence à `(0, 0)` :
-
+We will also say that this same vector represents a direction that starts at `(0, 0)`:
 
 ![](./img/direction.png)
 
-Ils ont exactement la même forme, mais des significations très différentes !
+They have exactly the same shape, but very different meanings!
 
 {% hint style="success" %}
-En fait, une **position** dans notre monde virtuel peut également être considérée comme le déplacement nécessaire pour arriver à la destination si nous sommes partis de l'origine `(0,0,0)`. 
+In fact, a **position** in our virtual world can also be considered as the movement required to reach the destination if we started from the origin `(0,0,0)`.
 {% endhint %}
 
-Un vecteur directionnel peut être considéré comme le déplacement nécessaire pour aller d'une position A à une position B. Il présente deux caractéristiques :
+A directional vector can be considered as the displacement required to move from position A to position B. It has two characteristics:
 
-- une direction
-- une grandeur (longueur)
+- a direction
+- a magnitude (length)
 
-Imaginez que nous soyons au point `(1, 1)` et que nous devions nous rendre au point `(4,5)`. Nous pourrions nous déplacer de 3 unités vers la droite et de 4 unités vers le haut. Notre déplacement final peut donc être exprimé par un vecteur `(3, 4)`. Mais nous n'avons pas besoin de nous déplacer vers la droite et vers le haut, nous pouvons simplement marcher tout droit jusqu'à notre destination. Il s'avère que la longueur de notre trajectoire est de 5 unités !
+Imagine that we are at point `(1, 1)` and we need to get to point `(4,5)`. We could move 3 units to the right and 4 units up. Our final movement can therefore be expressed by a vector `(3, 4)`. But we don't need to move to the right and up; we can simply walk straight ahead to our destination. It turns out that the magnitude of our trajectory is 5 units!
 
-Nous sommes donc partis du point `(1, 1)`, nous avons suivi le déplacement `(3,4)` et nous arrivons à notre destination `(4,5)` :
+So we started at point `(1, 1)`, followed the movement `(3,4)`, and arrived at our destination `(4,5)`:
 
 ```
 (1, 1) + (3, 4) = (4, 5)
 ```
 
-Pouvez-vous comprendre pourquoi j'ai dit que nous avons déplacé 5 unités ?
+Can you understand why I said we moved 5 units?
 
 ## Addition
 
-L'addition de vecteurs est vraiment intéressante car un simple `+` entre un point et une direction nous donne un nouveau point :
+Adding vectors is really interesting because a simple `+` between a point and a direction gives us a new point:
 
 ```
 Point (1, 2) + Direction (1, -1) = New Point (2, 1)
@@ -88,23 +86,23 @@ Point (1, 2) + Direction (1, -1) = New Point (2, 1)
 
 ![](./img/addition.png)
 
-Ou plus simplement :
+Or more simply:
 
 ```
 (1, 2) + (1, -1) = (2, 1)
 ```
 
-Ainsi, l'interprétation géométrique de l'ajout d'un vecteur position à un vecteur direction consiste à se déplacer du point vers une destination finale, en suivant le déplacement exprimé par le vecteur direction.
+Thus, the geometric interpretation of adding a position vector to a direction vector consists of moving from the point to a final destination, following the movement expressed by the direction vector.
 
-Qu'en est-il de l'ajout de vecteurs directionnels ? C'est l'équivalent de l'ajout d'un point de repère à notre voyage. Le vecteur résultant exprime le déplacement final de la première position à la destination, et sa longueur est le chemin le plus court entre ces deux points.
+What about adding direction vectors? This is equivalent to adding a landmark to our journey. The resulting vector expresses the final movement from the first position to the destination, and its length is the shortest path between these two points.
 
-## Soustraction
+## Subtraction
 
-Je suis au point A et je dois me rendre au point B ? Quel est le déplacement nécessaire ?
+I am at point A and need to get to point B. What is the necessary movement?
 
-Cela se calcule facilement en effectuant une soustraction !
+This can be easily calculated by performing a subtraction!
 
-Prenez le point de destination (B) et soustrayez le point de départ (A). Le résultat est un vecteur directionnel qui vous permet d'aller du point A au point B.
+Take the destination point (B) and subtract the starting point (A). The result is a directional vector that allows you to go from point A to point B.
 
 ```
 Start: (1, 1)
@@ -116,19 +114,19 @@ Displacement = End - Start
 ```
 
 
-## Un rayon
+## A Ray
 
-Qu'est-ce qu'un rayon ?
+What is a ray?
 
-Comme pour un rayon lumineux, il y a une source (son origine) et la direction dans laquelle la lumière va se déplacer. La lumière se déplacera dans cette direction à l'infini ! 
+As with a ray of light, there is a source (its origin) and the direction in which the light will travel. The light will travel in this direction indefinitely!
 
-Nous exprimons donc notre rayon à l'aide de 2 valeurs : 
+We therefore express our ray using two values:
 
 
-- `o` : une origine (une position)
-- `d` : une direction **normalisée**, c'est-à-dire avec une longueur de un, qui représente la direction de la ligne sans spécifier sa longueur (parce qu'elle est infinie !)
+- `o`: an origin (a position)
+- `d`: a **normalized** direction, i.e., with a length of one, which represents the direction of the line without specifying its length (because it is infinite!)
 
-Nous pouvons obtenir n'importe quel point sur ce rayon en spécifiant la longueur du rayon à parcourir, à partir du point d'origine. Rappelez-vous que la longueur de notre vecteur de direction est de 1, donc si nous le multiplions par n'importe quelle valeur, il s'étirera jusqu'à cette valeur (exemple `1 * 5 = 5`).
+We can obtain any point on this ray by specifying the distance to be traveled, starting from the point of origin. Remember that the length of our direction vector is 1, so if we multiply it by any value, it will stretch to that value (example `1 * 5 = 5`).
 
 ```
 // We want to travel t units in the direction of our ray
@@ -145,20 +143,19 @@ point on ray = (1, 1) + (5 * (0, 1))
 ```
 
 
-## Normalisation d'un vecteur directionnel
+## Normalization of a directional vector
 
-Nos mathématiques vectorielles seront plus faciles si la partie directionnelle de notre rayon a une longueur de 1. Comment forcer le vecteur directionnel à 1 ? Eh bien, nous divisons par sa longueur !
+Our vector math will be easier if the directional part of our ray has a length of 1. How do we force the directional vector to 1? Well, we divide by its length!
 
-Par exemple, si un vecteur a une longueur de 5, nous savons que `5 / 5 = 1`. Il nous suffit donc de diviser chaque composante de notre vecteur de direction par 5.
+For example, if a vector has a length of 5, we know that `5 / 5 = 1`. So we just need to divide each component of our direction vector by 5.
 
-
-Mais comment obtenir la longueur d'un vecteur ? Pythagore !
+But how do we get the length of a vector? Pythagoras!
 
 
 
 ![](./img/pythagorus.png)
 
-Tout vecteur de direction peut être exprimé sous la forme d'un triangle rectangle par rapport aux axes du monde. La longueur de ce triangle est donc de :
+Any direction vector can be expressed as a right triangle relative to the world axes. The length of this triangle is therefore:
 
 $$
 h^2 = x^2 + y^2
@@ -169,7 +166,7 @@ $$
 h = \sqrt{x^2 + y^2}
 $$
 
-Nous pouvons donc normaliser le vecteur en le divisant par `h` :
+We can therefore normalize the vector by dividing it by `h`:
 
 ```
 d = (1, 2, 3)
@@ -181,14 +178,14 @@ dNormalized = (1 / length, 2 / length, 3 / length)
 
 ## Ray tracing
 
-Revenons à notre traceur de rayons. Pour simplifier nos calculs, plaçons la caméra à l'origine `(0, 0, 0)`. 
+Let's return to our ray tracer. To simplify our calculations, let's place the camera at the origin `(0, 0, 0)`.
 
-Disons que nous voulons projeter la scène sur un plan carré situé à 1 unité de l'axe z de la caméra :
+Let's say we want to project the scene onto a square plane located 1 unit away from the camera's z-axis:
 
 
 ![](./img/rays.png)
 
-Nous allons donc faire passer un rayon par chaque pixel :
+So we will pass a ray through each pixel:
 
 ```
 ray00 = { o: (0, 0, 0), d: normalize(-1, 1, 1) }
@@ -203,7 +200,9 @@ ray11 = { o: (0, 0, 0), d: normalize(-1, 0.333, 1) }
 
 
 {% hint style="success" %}
-Que se passe-t-il si la caméra n'est pas à l'origine ? Que se passe-t-il si la caméra n'est pas orientée vers l'axe z positif ? 
 
-Pouvez-vous trouver la solution mathématique pour que la série de rayons soit toujours projetée ?
+What happens if the camera is not at the origin? What happens if the camera is not oriented towards the positive z-axis?
+
+Can you find the mathematical solution so that the series of rays is always projected?
+
 {% endhint %}

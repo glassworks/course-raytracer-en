@@ -1,6 +1,7 @@
 # Intersections
 
-Nous disposons maintenant d'une construction mathématique pour représenter un rayon.
+We now have a mathematical construct to represent a Ray.
+
 
 ```
 // Our ray
@@ -10,26 +11,26 @@ ray = {
 }
 ```
 
-Le but de notre traceur de rayons est de calculer si ce rayon croise des objets dans notre monde virtuel 3D !
+The purpose of our ray tracer is to calculate whether this ray intersects with objects in our 3D virtual world!
 
-Comment effectuer ce calcul ?
+How do we perform this calculation?
 
-## Intersection avec une sphère
+## Intersection with a sphere
 
-La surface d'une sphère peut être définie de manière paramétrique comme un point dans l'espace (appelons-le `c` pour **centre**) et un rayon (`r`). La surface est le nombre infini de points situés à `r` unités du centre `c`.
+The surface of a sphere can be defined parametrically as a point in space (let's call it `c` for **center**) and a radius (`r`). The surface is the infinite number of points located at `r` units from the center `c`.
 
-Examinez la configuration suivante. Nous voulons savoir si le rayon rouge finira par croiser la sphère :
+Consider the following configuration. We want to know if the red ray will eventually intersect the sphere:
 
 ![](img/sphere-intersection.png)
 
-Comment pouvons-nous faire cela ?
+How can we do this?
 
-Eh bien, il y a certaines choses que nous savons :
+Well, there are certain things we know:
 
-* Nous connaissons l'origine de notre rayon : `o`
-* Nous connaissons le centre du cercle : `c`.
+* We know the origin of our ray: `o`
+* We know the center of the circle: `c`.
 
-Connaissant ces deux positions, nous pouvons calculer un vecteur qui représente la distance à parcourir de `o` à `c` , en utilisant la soustraction :
+Knowing these two positions, we can calculate a vector that represents the distance to travel from `o` to `c`, using subtraction:
 
 ```
 oc = c - o
@@ -37,9 +38,10 @@ oc = c - o
 
 ![](img/sphere-intersection-2.png)
 
-Si nous **projetons** `OC` sur notre rayon, nous obtenons le point `P` qui tombera quelque part le long du rayon (la partie en pointillé de la ligne représente la partie du rayon qui est au-delà de la première unité représentée par notre direction normalisée).
+If we **project** `OC` onto our ray, we get point `P`, which will fall somewhere along the ray (the dotted part of the line represents the part of the ray that is beyond the first unit represented by our normalized direction).
 
-Heureusement, il est facile de projeter un vecteur sur un autre vecteur normalisé, en utilisant le **produit scalaire**. Imaginez que nous ayons un vecteur `d` et un autre `n`. Pour projeter le vecteur `d` sur le vecteur normalisé `n`, nous utilisons la formule :
+Fortunately, it is easy to project one vector onto another normalized vector using the **dot product**. Imagine we have one vector `d` and another `n`. To project vector `d` onto normalized vector `n`, we use the formula:
+
 
 $$
 proj(d,n) = (\bar{d}\cdot\bar{n})\bar{n}
@@ -54,7 +56,7 @@ let n = (nx, ny, nz)
 let dotproduct = (dx * nx) + (dy * ny) + (dz * nz)
 ```
 
-Ainsi, dans notre exemple, la projection peut être calculée :
+Thus, in our example, the projection can be calculated as follows:
 
 ```
 ray = {
@@ -76,17 +78,17 @@ op = dotProd * ray.d = (dotProd * ray.d.x, dotProd * ray.d.y, dotProd * ray.d.z)
 
 ```
 
-Ainsi, `op` est le vecteur qui nous emmène de `o` à `p`.
+Thus, `op` is the vector that takes us from `o` to `p`.
 
-Pour calculer la valeur réelle de P, nous partons de l'origine de notre rayon, et nous ajoutons notre vecteur !
+To calculate the actual value of P, we start from the origin of our radius and add our vector!
 
 ```
 p = o + op
 ```
 
-C'est très bien, mais en quoi le fait de connaître la position de `p` nous aide-t-il ? S'il se trouve à l'intérieur de la sphère, nous savons qu'il l'intersecte sans aucun doute. Comment savoir s'il est à l'intérieur de la sphère ? C'est simple ! Si la distance entre `c` et `p` est inférieure ou égale au rayon de la sphère !
+That's great, but how does knowing the position of `p` help us? If it is inside the sphere, we know that it undoubtedly intersects it. How can we tell if it is inside the sphere? It's simple! If the distance between `c` and `p` is less than or equal to the radius of the sphere!
 
-Comment calculer la distance entre 2 points ? Eh bien, on calcule le déplacement nécessaire pour aller de l'un à l'autre (soustraction), et on calcule la longueur de ce vecteur (pythagore).
+How do you calculate the distance between two points? Well, you calculate the movement required to go from one to the other (subtraction), and you calculate the length of this vector (Pythagoras).
 
 ```
 // Displacement vector from c to p
@@ -102,28 +104,27 @@ if (distance < r) {
 }
 ```
 
-Génial ! Nous savons qu'il y a une intersection ! Comment trouver le point d'intersection exact `p1` ?
+Great! We know there is an intersection! How do we find the exact intersection point `p1`?
 
 ![](img/sphere-point-of-intersection.png)
 
-Nous connaissons déjà la longueur de `cp`, nous connaissons la valeur de `r`, et donc en utilisant pythagore nous pouvons calculer la longueur de `p -> p1` (appelons-le `a`).
+We already know the length of `cp`, we know the value of `r`, and so using Pythagoras we can calculate the length of `p -> p1` (let's call it `a`).
 
 ```
 let distance = length(cp) 
 let a = sqrt( r*r - distance*distance )
 ```
 
-Pour obtenir la position `P1`, il suffit de reculer de `a` unités le long de notre rayon initial, mais dans le sens inverse :
-
+To obtain position `P1`, simply move back `a` units along our initial radius, but in the opposite direction:
 ```
 let p1 = p + (a * (-d))
 ```
 
-Et voilà !
+There you go!
 
-Maintenant que nous connaissons la position exacte de P dans le monde, nous pouvons commencer à déterminer la couleur de la surface en ce point !
+Now that we know the exact position of P in the world, we can start determining the color of the surface at that point!
 
-Voici un résumé en pseudo-code des calculs nécessaires pour calculer le point d'intersection :
+Here is a pseudo-code summary of the calculations needed to calculate the intersection point:
 
 ```
 struct Vector3 {
@@ -179,44 +180,47 @@ function intersectSphere(ray, sphere) {
 ```
 
 {% hint style="success" %}
-Voici quelques chiffres pour debugger votre implémentation.
 
-Imaginons qu'on a une caméra à `(0,0,0)`, orientée vers l'axe z-negatif. 
+Here are some figures to help you debug your implementation.
 
-Pour une sphère à `(0, 0, 6)` avec un rayon de `1` :
+Let's imagine we have a camera at `(0,0,0)`, oriented towards the negative z-axis.
 
- - Un rayon passant à travers du point `(0, 0, 1)` touchera la sphère à `(0, 0, 5)`
- - Un rayon passant à travers du point `(0.01, 0, 1)`, aura la direction normalisée `(0.0099995,0,0.99995)` et touchera la sphère à `(0.0500125,0,5.00125)`
+For a sphere at `(0, 0, 6)` with a radius of `1`:
 
-Pour une sphère à `(2, 0, 6)` avec un rayon de `1` :
- - Un rayon passant à travers du point `(0.5, 0.05, 1)`, aura la direction normalisée `(0.446767,0.0446767,0.893534)` et touchera la sphère à `(2.63852,0.263852,5.27704)`
+- A ray passing through the point `(0, 0, 1)` will touch the sphere at `(0, 0, 5)`
+- A ray passing through the point `(0.01, 0, 1)` will have the normalized direction `(0.0099995,0,0.99995)` and will touch the sphere at `(0.0500125,0,5.00125)`
+
+For a sphere at `(2, 0, 6)` with a radius of `1`:
+
+- A radius passing through the point `(0.5, 0.05, 1)` will have the normalized direction `(0.446767,0.0446767,0.893534)` and will touch the sphere at `(2.63852,0.263852,5.27704)`.
 
 {% endhint %}
 
-## Note sur le produit scalaire
+## Note on the dot product
 
-Le produit scalaire entre deux vecteurs est une valeur très intéressante et utile
+The dot product between two vectors is a very interesting and useful value.
 
-### Relation spatiale
+### Spatial relationship
 
-Si **les deux vecteurs sont normalisés**, le produit scalaire est égal au **cosinus** de l'angle entre les deux vecteurs.
+If **both vectors are normalized**, the scalar product is equal to the **cosine** of the angle between the two vectors.
 
 $$
 \bar{d}\cdot\bar{n}= \cos{\theta}
 $$
 
-Pourquoi est-ce utile ? Eh bien, sans avoir à calculer l'angle θ, nous pouvons déduire des choses sur la relation entre les deux vecteurs.
+Why is this useful? Well, without having to calculate the angle θ, we can deduce things about the relationship between the two vectors.
 
 ![](img/Cosine-Graph.png)
 
-Le graphique montre que :
+The graph shows that:
 
-* si le produit scalaire = 1, alors nous sommes à 0°. Les deux directions sont orientées dans le même sens
-* si le produit scalaire = 0, alors nous sommes à 90°. Les deux directions sont perpendiculaires.
-* si le produit scalaire > 0, le graphique se situe quelque part entre 0° et 90°, il doit donc s'agir d'un angle aigu
-* si le produit scalaire < 1, le graphique se situe quelque part entre 90° et 270°, il doit donc s'agir d'un angle obtus.
+* if the scalar product = 1, then we are at 0°. Both directions are oriented in the same direction
+* if the scalar product = 0, then we are at 90°. Both directions are perpendicular.
+* if the scalar product > 0, the graph is somewhere between 0° and 90°, so it must be an acute angle
+* if the scalar product < 1, the graph is somewhere between 90° and 270°, so it must be an obtuse angle.
 
-Dans l'exemple précédent, nous voulions savoir si la sphère se trouvait **devant le rayon** (et non derrière). L'angle entre notre rayon et la direction vers le centre de la sphère doit donc être un angle aigu. Nous calculons le produit scalaire entre ces deux directions (normalisées), et s'il est négatif, nous savons qu'il s'agit d'un angle obtus, et donc que la sphère doit être derrière nous !
+In the previous example, we wanted to know if the sphere was **in front of the ray** (and not behind it). The angle between our ray and the direction towards the center of the sphere must therefore be an acute angle. We calculate the dot product between these two (normalized) directions, and if it is negative, we know that it is an obtuse angle, and therefore that the sphere must be behind us!
+
 
 ```
 // Normalise OC
@@ -230,18 +234,17 @@ if (dotproduct(ocnorm, d) < 0 ) { return }
 
 ### Angle
 
-Nous pouvons bien sûr obtenir l'angle (en radians) entre les deux directions en utilisant l'inverse du cosinus :
+We can, of course, obtain the angle (in radians) between the two directions using the inverse cosine:
 
 $$
 \theta = \arccos({\bar{d}\cdot\bar{n}})
 $$
 
-Cette méthode renvoie une valeur comprise entre 0 et 2π. Attention cependant, elle ne renvoie pas de nombres négatifs, de sorte que nous ne pouvons pas savoir si l'angle entre les deux vecteurs est à gauche ou à droite.
+This method returns a value between 0 and 2π. However, it does not return negative numbers, so we cannot tell whether the angle between the two vectors is to the left or to the right.
 
 {% hint style="info" %}
-Comment convertir les radians en degrés ?&#x20;
 
-
+How do you convert radians to degrees?
 
 $$
 degrees = radians * 180/\pi
@@ -250,58 +253,58 @@ $$
 
 ### Projection
 
-Le produit scalaire entre un vecteur non normalisé et un vecteur normalisé nous donne la longueur d'une projection du vecteur non normalisé sur le vecteur normalisé.
+The dot product between an unnormalized vector and a normalized vector gives us the length of a projection of the unnormalized vector onto the normalized vector.
 
-Qu'est-ce qu'une projection ?
+What is a projection?
 
-En imaginant que vous projetiez une lumière perpendiculairement au vecteur normalisé. L'ombre de l'autre vecteur sur le vecteur normalisé est la projection !
+Imagine that you are projecting light perpendicularly onto the normalized vector. The shadow of the other vector on the normalized vector is the projection!
 
-Imaginez que nous ayons un vecteur `d` et un autre `n` (qui est normalisé). Pour projeter le vecteur `d` sur le vecteur `n`, nous utilisons la formule :
+Imagine we have a vector `d` and another vector `n` (which is normalized). To project vector `d` onto vector `n`, we use the formula:
 
 $$
 proj(d,n) = (\bar{d}\cdot\bar{n})\bar{n}
 $$
 
-## Intersection avec un plan
+## Intersection with a plane
 
-Un plan infini peut être exprimé de façon paramétrique comme suit
+An infinite plane can be expressed parametrically as follows
 
-* supposons que nous ayons un point `c` dans l'espace, et un vecteur normal `n`
-* le plan est l'ensemble des points `p` où le vecteur `pc` est perpendiculaire à la normale `n`.
+* suppose we have a point `c` in space, and a normal vector `n`
+* the plane is the set of points `p` where the vector `pc` is perpendicular to the normal `n`.
 
 ![](img/plane-intersection.png)
 
-Dans le diagramme, nous supposons que `p` se trouve également sur notre rayon. Si la direction du rayon est normalisée, il nous suffit de trouver un multiplicateur `t` pour ce rayon qui le redimensionnera suffisamment pour nous amener à `p`
+In the diagram, we assume that `p` is also on our ray. If the direction of the ray is normalized, we just need to find a multiplier `t` for this ray that will resize it enough to bring us to `p`.
 
 $$
 \bar{p} = \bar{o} + t\bar{d}
 $$
 
-Nous ne savons pas encore ce qu'est `t` - nous devons le calculer !
+We don't know what `t` is yet—we have to calculate it!
 
-Mais nous avons besoin de plus d'informations.
 
-En regardant le diagramme, on peut aussi déduire que si `p` est sur le plan, alors la ligne `pc` doit être perpendiculaire à la normale `n`.
+But we need more information.
 
-Heureusement, le produit scalaire est à nouveau notre ami ! En effet, si le produit scalaire entre deux vecteurs normalisés est 0, cela signifie que les deux vecteurs qui l'ont créé sont perpendiculaires !
+Looking at the diagram, we can also deduce that if `p` is on the plane, then the line `pc` must be perpendicular to the normal `n`.
+Fortunately, the dot product is our friend again! Indeed, if the dot product between two normalized vectors is 0, it means that the two vectors that created it are perpendicular!
 
 $$
 (\bar{p} - \bar{c})\cdot(\bar{n}) = 0
 $$
 
-Remplaçons `p` de notre rayon par la formule du plan :
+Let's replace `p` in our radius with the formula for the plane:
 
 $$
 (\bar{o} + t\bar{d} - \bar{c})\cdot\bar{n} = 0
 $$
 
-Multipliez le produit scalaire :
+Multiply the dot product:
 
 $$
 \bar{o}\cdot\bar{n} + t\bar{d}\cdot\bar{n} - \bar{c}\cdot\bar{n} = 0
 $$
 
-Résolvez pour `t` :
+Solve for `t`:
 
 $$
 t\bar{d}\cdot\bar{n} = \bar{c}\cdot\bar{n} -\bar{o}\cdot\bar{n}
@@ -315,9 +318,9 @@ $$
 t = \frac{(\bar{c} -\bar{o})\cdot\bar{n}}{\bar{d}\cdot\bar{n}}
 $$
 
-Nous disposons donc d'une formule relativement simple pour calculer `t` !
+So we have a relatively simple formula for calculating `t`!
 
-Calculons d'abord le dénominateur :
+Let's first calculate the denominator:
 
 ```
 let denom = dotProduct(ray.d, plane.n)
@@ -330,9 +333,9 @@ if (denom > -0.000001) {
 }
 ```
 
-Si le dénominateur est nul ou proche de zéro, cela signifie que notre rayon est perpendiculaire à la normale, c'est-à-dire que le rayon est parallèle au plan et ne l'intersectera jamais !
+If the denominator is zero or close to zero, this means that our radius is perpendicular to the normal, i.e., the radius is parallel to the plane and will never intersect it!
 
-Calculons ensuite le numérateur :
+Next, let's calculate the numerator:
 
 ```
 let num = dotProduct(plane.c - ray.o, plane.n)
@@ -340,7 +343,7 @@ let num = dotProduct(plane.c - ray.o, plane.n)
 let t = num / denom
 ```
 
-Maintenant que nous avons `t`, nous pouvons calculer le point `p` en le substituant à la formule de notre rayon :
+Now that we have `t`, we can calculate point `p` by substituting it into our radius formula:
 
 ```
 let p = ray.o + t * ray.d

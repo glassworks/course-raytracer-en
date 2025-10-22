@@ -1,11 +1,11 @@
 # Class
 
-Une classe est le principe central du paradigme de la programmation orientée objet et sera très utile pour l'architecture de notre raytracer.
+A class is the central principle of the object-oriented programming paradigm and will be very useful for the architecture of our raytracer.
 
-Nous utiliserons des classes pour notre modélisation mathématique, ce qui facilitera grandement nos opérations.
+We will use classes for our mathematical modeling, which will greatly facilitate our operations.
 
-Pour cet exemple, nous modéliserons une **couleur**, qui est simplement un vecteur (ou **tuple**) contenant trois valeurs : rouge, vert et bleu : 
-
+For this example, we will model a **color**, which is simply a vector (or **tuple**) containing three values: red, green, and blue:
+ 
 
 ```
 (r, g, b)
@@ -19,11 +19,11 @@ White = (1, 1, 1)
 Black = (0, 0, 0)
 ```
 
-Avez-vous déjà entendu parler d'un **pixel**? Il s'agit en fait d'un tuple contenant les trois valeurs flottantes pour le rouge, le vert et le bleu !
+Have you ever heard of a **pixel**? It's actually a tuple containing the three floating point values for red, green, and blue!
 
-En C++, nous gérons les dépendances en spécifiant d'abord les *interfaces* de nos classes (en utilisant les fichiers **h** ), et l'implémentation réelle des interfaces dans les fichiers **cpp**.
+In C++, we manage dependencies by first specifying the *interfaces* of our classes (using **h** files), and then implementing those interfaces in **cpp** files.
 
-Définissons notre interface pour représenter une couleur (dans `src/raymath/Color.hpp`) :
+Let's define our interface to represent a color (in `src/raymath/Color.hpp`):
 
 
 ```cpp
@@ -52,19 +52,19 @@ public:
 };
 ```
 
-Nous définissons trois valeurs privées, `r`, `g` et `b`. Nous définissons également deux fonctions de construction :
+We define three private values, `r`, `g`, and `b`. We also define two constructor functions:
 
-- L'une qui initialise la couleur en noir
-- Une autre qui prend trois paramètres et initialise la couleur en conséquence.
+- One that initializes the color to black
+- Another that takes three parameters and initializes the color accordingly.
   
-Il est toujours bon d'inclure une fonction**destructeur** - la fonction qui sera appelée lorsque l'instance de l'objet sera détruite (pour nettoyer la mémoire).
+It is always a good idea to include a **destructor** function—the function that will be called when the object instance is destroyed (to clean up the memory).
 
-Nous avons défini deux **opérateurs** qui nous faciliteront la vie lors de l'utilisation de cette classe :
+We have defined two **operators** that will make our lives easier when using this class:
 
-- `+` : qui nous permettra d'utiliser le symbole `+` entre deux objets de type `Color`, réalisant ainsi l'équivalent en couleur d'une addition.
-- `<<` : qui nous permettra de sérialiser notre `Color` dans un `iostream` pour faciliter le débogage.
+- `+`: which will allow us to use the `+` symbol between two objects of type `Color`, thus performing the color equivalent of an addition.
+- `<<`: which will allow us to serialize our `Color` in an `iostream` to facilitate debugging.
 
-Regardons maintenant l'implémentation (dans `src/raymath/Color.cpp`) :
+Now let's look at the implementation (in `src/raymath/Color.cpp`):
 
 
 ```cpp
@@ -130,13 +130,13 @@ std::ostream & operator<<(std::ostream & _stream, Color const & col) {
 }
 ```
 
-## Compilation de cette bibliothèque
+## Compiling this library
 
-Nous voulons développer un certain nombre de classes comme `Color` dans notre projet. Il est utile de les regrouper dans une **librairie**.
+We want to develop a number of classes such as `Color` in our project. It is useful to group them together in a **library**.
 
-Dans CMake, nous procédons de la manière suivante :
+In CMake, we proceed as follows:
 
-1. Ajoutez le fichier `src/raymath/CMakeLists.txt`, avec l'instruction de construire notre nouvelle classe :
+1. Add the file `src/raymath/CMakeLists.txt`, with the instruction to build our new class:
 
 
 ```cmake
@@ -145,7 +145,7 @@ add_library(raymath
 )
 ```
 
-2. Modifiez notre fichier racine `CMakeLists.txt`.
+2. Modify our root file `CMakeLists.txt`.
 
 
 ```cmake
@@ -168,9 +168,9 @@ add_subdirectory(./src/raymath)
 target_link_libraries(raytracer PUBLIC raymath)
 ```
 
-## Utilisation de la bibliothèque
+## Using the library
 
-Nous pouvons maintenant utiliser notre classe `Color` dans notre projet :
+We can now use our `Color` class in our project:
 
 ```cpp
 #include <iostream>

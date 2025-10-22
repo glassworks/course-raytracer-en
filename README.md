@@ -78,55 +78,54 @@ Fortunately, there are a few wise elders who can pass on the almost lost knowled
 
 ## Group project
 
-Vous devez travailler en groupe de maximum 4 personnes. Merci de renseigner la constitution de vos groupes ici : [https://docs.google.com/spreadsheets/d/15XxlY-hAXphluYYi91rkFycaz-DHESSliPAoS5DUFLo/edit?usp=sharing](https://docs.google.com/spreadsheets/d/15XxlY-hAXphluYYi91rkFycaz-DHESSliPAoS5DUFLo/edit?usp=sharing)
+You must work in teams of maximum 4 people. [Please specify your teams here.](https://docs.google.com/spreadsheets/d/1qHr7hSANnmTzyi69LXJbhnVzSG8Ipa5p9VCVnAoc07s/edit?usp=sharing)
 
-## Notation
+## Evaluation
 
-On vous a demandé de **construire un traceur de rayons à partir des premiers principes**, en utilisant le langage de programmation C++.
+You have been asked to **build a ray tracer from first principles**, using the C++ programming language.
 
 {% hint style="warning" %}
-Le but de ce projet est de développer vos compétences d'ingénieur, votre capacité à concevoir et à exécuter un développement logiciel complexe. Les éléments suivants sont donc considérés comme contraires à l'esprit de l'exercice, et ne seront pas autorisés ou acceptés :
+The goal of this project is to develop your engineering skills, your ability to design and execute complex software development. The following are therefore considered contrary to the spirit of the exercise and will not be allowed or accepted:
 
-* La copie ou l'adaptation, de quelque manière que ce soit, des dépôts de traceurs de rayons existants sur Git-Hub ou ailleurs.
-* L'utilisation de Chat-GPT, ou d'une autre intelligence artificielle, pour écrire votre code.
+* Copying or adapting, in any way, existing ray tracer repositories on Git-Hub or elsewhere.
+* Using Chat-GPT, or any other artificial intelligence, to write your code.
 
-Je vous demanderai fréquemment d'expliquer votre code, et vous serez pénalisé si vous ne pouvez pas expliquer suffisamment votre structure de données ou vos algorithmes.
+I will frequently ask you to explain your code, and you will be penalized if you cannot sufficiently explain your data structure or algorithms.
 {% endhint %}
 
-**Livraison et livrables**
+**Delivery and deliverables**
 
-Vous devrez présenter votre logiciel le jeudi 31 octobre 2024. Vous devrez présenter les éléments suivants :
-
-* la ou les images rendues par votre logiciel
-* le temps total de rendu de votre (vos) image(s)
-* il vous sera demandé de réaliser un rendu d'image en direct devant le client
-* vous devrez présenter et expliquer une partie de votre code
-* vous devez fournir un lien vers le projet GitHub
+You will be required to present your software on Friday, 7 November, 2025. You will be required to present the following:
+* The image(s) rendered by your software
+* The total rendering time of your image(s)
+* You will be asked to render an image live in front of the client
+* You will be required to present and explain parts of your code
+* You must provide a link to the GitHub project
 
 **Notation**
 
-La notation est réalisée _à la carte_. Un produit de base fonctionnel (MVP) vous vaudra une note qui passe. Ensuite, vous êtes libre de mettre en œuvre toutes les techniques que vous souhaitez pour améliorer votre note, jusqu'à un maximum de 20 points.
+Scoring is done à la carte. A functional minimum viable product (MVP) will earn you a passing score. You are then free to implement any techniques you wish to improve your score, up to a maximum of 20 points.
 
-La grille de notation suivante sera utilisée pour évaluer le projet :
+The following rating scale will be used to evaluate the project:
 
 | Aspect                                                              | Note              |
 | ------------------------------------------------------------------- | ----------------- |
-| **Produit de base fonctionnel**\*                                   |                   |
-| Un exécutable C++ fonctionnel                                       | 1                 |
-| Une image PNG est produite                                          | 1                 |
-| Au minimum, le rendu plat d'une sphère est réalisé                  | 1                 |
-| Au minimum, le rendu diffus d'une sphère est réalisé                | 2                 |
-| Rendu d'un plan                                                     | 1                 |
-| Réflexions                                                          | 2                 |
-| **Architecture C++ et qualité du code**                             |                   |
-| Structures de données                                               | 1                 |
+| **Functional base product**                                   |                   |
+| A functional C++ executable                                       | 1                 |
+| A PNG image is produced                                          | 1                 |
+| At a minimum, flat rendering of a sphere is achieved                  | 1                 |
+| At a minimum, diffuse rendering of a sphere is achieved                | 2                 |
+| Rendering of a plane                                                     | 1                 |
+| Reflections                                                          | 2                 |
+| **C++ architecture and code quality**                             |                   |
+| Data structures                                               | 1                 |
 | Clean code                                                          | 1                 |
-| Algorithmes utilisés et correctement expliqués                      | 1                 |
-| **Points supplémentaires**                                          |                   |
-| Les shaders de surface autres que les shaders diffus                | 3                 |
-| Rendu d'autres formes                                               | 3                 |
-| Rendu d'un modèle 3D (.obj, .fbx, ...)                              | 3                 |
-| Stratégie d'optimisation                                            |  jusqu'à 8 points |
-| Techniques avancées de rendu de surface                             | 3                 |
-| Langage structuré de modélisation de la scène                       | 2                 |
-| Toute autre caractéristique suffisamment expliquée et mise en œuvre | 3                 |
+| Algorithms used and correctly explained                      | 1                 |
+| **Additional points**                                          |                   |
+| Surface shaders other than diffuse shaders                | 3                 |
+| Rendering of other shapes                                               | 3                 |
+| Rendering of a 3D model (.obj, .fbx, etc.)                              | 3                 |
+| Optimization strategy                                            |  up to 8 points |
+| Advanced surface rendering techniques                             | 3                 |
+| Structured scene modeling language                       | 2                 |
+| Any other feature that is sufficiently explained and implemented | 3                 |
