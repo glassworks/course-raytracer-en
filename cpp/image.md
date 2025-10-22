@@ -1,10 +1,10 @@
-# Écrire une image
+# Writing an image
 
-L'objectif ultime de ce projet est d'écrire une série de pixels (Couleurs) dans un fichier, par exemple un fichier PNG.
+The ultimate goal of this project is to write a series of pixels (colors) to a file, for example a PNG file.
 
-Nous pouvons modéliser un **fichier** comme une grille 2D de pixels ou de couleurs. En réalité, cette grille n'est qu'un long tableau de pixels `largeur * hauteur`.
+We can model a **file** as a 2D grid of pixels or colors. In reality, this grid is just a long array of pixels `width * height`.
 
-Voici donc une façon de modéliser notre fichier image (dans `src/rayimage/Image.hpp`) :
+Here is one way to model our image file (in `src/rayimage/Image.hpp`):
 
 ```cpp
 #pragma once
@@ -30,7 +30,7 @@ public:
 };
 ```
 
-Et voici l'implémentation (`src/rayimage/Image.cpp`) :
+And here is the implementation (`src/rayimage/Image.cpp`):
 
 ```cpp
 #include <iostream>
@@ -94,19 +94,17 @@ void Image::WriteFile(const char * filename) {
 }
 ```
 
-Comment fonctionne ce code ?
+How does this code work?
 
-1. Nous utilisons un constructeur qui réserve une liste d'objets `Color`. Le nombre d'éléments dans la liste correspond au nombre total de pixels dans l'image.
-2. Nous pouvons définir des pixels spécifiques à partir des coordonnées `x` et `y`.
-3. Nous pouvons sauvegarder cette grille dans une image. J'utilise l'outil [lodepng](https://lodev.org/lodepng/) que j'ai téléchargé et placé dans le répertoire `src/lodepng`.
+1. We use a constructor that reserves a list of `Color` objects. The number of elements in the list corresponds to the total number of pixels in the image.
+2. We can define specific pixels using the `x` and `y` coordinates.
+3. We can save this grid in an image. I use the [lodepng](https://lodev.org/lodepng/) tool, which I downloaded and placed in the `src/lodepng` directory.
 
-Rappelez-vous qu'un fichier image n'est qu'une liste de pixels, et que chaque pixel n'est qu'une liste de 3 nombres (un octet chacun). Donc notre fonction write va juste boucler sur chaque `Color`, et pour chaque composante de la couleur, convertir la valeur float en une valeur byte et l'insérer dans le tableau de l'image finale. Un fichier PNG a une quatrième composante, alpha, que nous n'utilisons pas dans cet exemple, donc nous la fixons simplement à sa valeur maximale.
+Remember that an image file is just a list of pixels, and each pixel is just a list of 3 numbers (one byte each). So our write function will just loop over each `Color`, and for each component of the color, convert the float value to a byte value and insert it into the final image array. A PNG file has a fourth component, alpha, which we are not using in this example, so we simply set it to its maximum value.
 
 {% hint style="success" %}
-Je vous laisse le soin de configurer les fichiers CMakeLists.txt ! C'est le même processus que nous avons utilisé pour la classe Color.
+I'll leave it to you to configure the CMakeLists.txt files! It's the same process we used for the Color class.
 {% endhint %}
-
-Maintenant que nous avons notre outil d'image, testons-le en étendant notre `main.cpp` :
 
 ```cpp
 #include <iostream>

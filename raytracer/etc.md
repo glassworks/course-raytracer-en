@@ -1,11 +1,10 @@
-# Et bien d'autres défis encore
+# And many other challenges
 
-Maintenant que vous connaissez les principes de base, c'est à vous de les assembler et de créer votre raytracer.
+Now that you know the basics, it's up to you to put them together and create your ray tracer.
 
-Mais vous serez confronté à de nombreux autres défis algorithmiques et organisationnels :
+But you will face many other algorithmic and organizational challenges:
 
-- Comment représenter vos constructions mathématiques (vecteurs, couleurs, etc.) ?
-- Quelle structure de données allez-vous utiliser pour représenter votre scène ? 
-- Lorsque vous lancez un rayon, comment allez-vous calculer quel(s) objet(s) le rayon coupe(nt), et lequel utiliser pour votre pixel ?
-- Essayez de déterminer la complexité de calcul de votre raytracer ? Existe-t-il des moyens de l'optimiser ?
-
+- How will you represent your mathematical constructs (vectors, colors, etc.)?
+- What data structure will you use to represent your scene?
+- When you launch a ray, how will you calculate which object(s) the ray intersects, and which one to use for your pixel?
+- Try to determine the computational complexity of your raytracer. Are there ways to optimize it?

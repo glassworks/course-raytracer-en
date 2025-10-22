@@ -1,61 +1,56 @@
-# Qu'est-ce qu'un raytracer ?
+# What is a raytracer?
+In photorealistic rendering, a *raytracer* aims to simulate how light bounces around a three-dimensional virtual scene.
 
-Dans le rendu photoréaliste, un *lanceur de rayons* vise à simuler la façon dont la lumière rebondit sur une scène virtuelle en trois dimensions.
+The goal is to render an image that looks as close to the real world as possible, hence the term “photorealistic.”
 
-L'objectif est de rendre une image aussi proche que possible de l'apparence du monde réel, d'où le terme « photoréaliste ».
+We simulate light — a physical phenomenon that involves frequencies, wavelengths, material properties, and so on. You will discover that trying to simulate a natural phenomenon on a computer is a difficult and often computationally expensive exercise (which makes it an excellent learning experience in the context of this course!).
 
-Nous simulons la lumière - un phénomène physique qui implique des fréquences, des longueurs d'onde, des propriétés matérielles, etc. Vous découvrirez qu'essayer de simuler un phénomène naturel sur un ordinateur est un exercice difficile et souvent coûteux en termes de calcul (ce qui en fait une excellente expérience d'apprentissage dans le cadre de ce cours !)
-
-Lorsque nous *modélisons* la physique de la vie réelle, pour réduire le problème à un niveau gérable, nous créons une version simplifiée pour commencer. C'est ce que nous allons faire pour les rayons lumineux !
+When we *model* real-life physics, to reduce the problem to a manageable level, we create a simplified version to start with. That's what we're going to do for light rays!
 
 
-## Un modèle de lumière simplifié
+## A simplified model of light
 
-Simplifions la façon dont nous percevons les choses dans le monde réel, comme l'illustre l'image suivante :
-
+Let's simplify how we perceive things in the real world, as illustrated in the following image:
 ![](./img/light.png)
 
-Dans sa forme la plus simple, une lumière (ou le soleil) émet des rayons lumineux, qui peuvent être représentés par un **vecteur directionnel**, une ligne droite qui a une source et une direction.
+In its simplest form, a light (or the sun) emits light rays, which can be represented by a **directional vector**, a straight line that has a source and a direction.
 
-Cette lumière voyage en ligne droite jusqu'à ce qu'elle atteigne un objet dans notre monde. Certaines des longueurs d'onde de la lumière (couleurs) seront absorbées par la surface de l'objet, en fonction de sa composition. Certaines surfaces, comme le bois, absorbent toutes les couleurs à l'exception des couleurs brunâtres. Une feuille de papier blanc n'absorbe pratiquement aucune couleur et les reflète toutes. 
+This light travels in a straight line until it reaches an object in our world. Some of the wavelengths of light (colors) will be absorbed by the surface of the object, depending on its composition. Some surfaces, such as wood, absorb all colors except brownish colors. A sheet of white paper absorbs virtually no colors and reflects them all.
 
-Le rayon lumineux est réfléchi autour de la **normale à la surface** au point d'intersection avec l'objet. Une normale de surface est la direction **perpendiculaire** à la surface. Ce rayon lumineux réfléchi poursuit son chemin dans le monde.
+The light ray is reflected around the **normal to the surface** at the point of intersection with the object. A surface normal is the direction **perpendicular** to the surface. This reflected light ray continues on its way into the world.
+Perhaps the light ray enters our eye and lands on our retina. This is how we perceive things in our world! Based on the light that has bounced around the world, colors being absorbed or reflected along the way, and luckily entering our eyes.
 
-Peut-être le rayon lumineux pénètre-t-il dans notre œil et se pose-t-il sur notre rétine. C'est ainsi que nous percevons les choses dans notre monde ! Sur la base de la lumière qui a rebondi autour du monde, les couleurs étant absorbées ou réfléchies en chemin, et par chance, entrant dans nos yeux.
 
+## An inverted model for greater simplicity
 
-## Un modèle inverse pour plus de simplicité
+It would be far too costly to simulate every ray of light emitted by a light source in a virtual scene, hoping to record only those that land on our virtual retina! We need to simplify the problem.
 
-Il serait beaucoup trop coûteux de simuler chaque rayon lumineux émis par une source lumineuse dans une scène virtuelle, en espérant n'enregistrer que ceux qui atterrissent sur notre rétine virtuelle ! Nous devons simplifier le problème. 
+What if we reversed the problem? Let's ignore all the light that never enters our eye, and simulate only the light that does enter. This drastically reduces the number of rays to be calculated.
 
-Et si nous inversions le problème ? Ignorons toute la lumière qui n'entre jamais dans notre œil, et simulons seulement celle qui y entre. Nous réduisons drastiquement le nombre de rayons à calculer.
+But how do we know which rays, starting from the light source, end up reaching our eyes?
 
-Mais comment savoir quels sont ceux qui, partant de la source lumineuse, finissent par arriver dans nos yeux ?
+Well, rays are just a series of straight lines that bounce around their normals. What works in one direction works just as well in the other!
 
-Eh bien, les rayons ne sont qu'une série de lignes droites qui rebondissent autour de leurs normales. Ce qui fonctionne dans une direction fonctionne aussi bien dans l'autre !
+This time, let's start the ray in our eye and send it into the scene. When we hit an object, we can determine the color of that object (at the point of intersection), calculate the new reflected ray, and repeat the process.
 
-Commençons le rayon cette fois-ci dans notre œil, et envoyons-le dans la scène. Lorsque nous touchons un objet, nous pouvons déterminer la couleur de cet objet (au point d'intersection), calculer le nouveau rayon réfléchi et répéter le processus.
-
-La couleur finale que voit notre œil virtuel sera simplement la couleur accumulée (c'est-à-dire l'addition des couleurs) par le chemin parcouru par notre rayon !
+The final color that our virtual eye sees will simply be the color accumulated (i.e., the addition of colors) along the path traveled by our ray!
 
 
 ![](./img/simple-raytracing.png)
 
-## Qu'est-ce qu'une couleur ?
+## What is color?
+In physics, color is light with a certain wavelength. This is a bit complicated, and we can model this entity more simply.
 
-En physique, une couleur est une lumière avec une certaine longueur d'onde. C'est un peu compliqué, et nous pouvons modéliser cette entité plus simplement.
+Our modern computer screens give us the impression of seeing images, photos, and movies by emitting light at different wavelengths. If you look closely at a computer screen, you will notice that it is a dense network of LED emitters of the three basic wavelengths: red, blue, and green (RGB). These three wavelengths can produce a **gamut** of colors ranging from almost black (no light) to white (maximum intensity).
 
-Nos écrans d'ordinateur modernes nous donnent l'impression de voir des images, des photos et des films en émettant de la lumière à différentes longueurs d'onde. Si vous regardez de près un écran d'ordinateur, vous remarquerez qu'il s'agit d'un réseau serré d'émetteurs LED des trois longueurs d'onde de base : le rouge, le bleu et le vert (RVB). Ces trois longueurs d'onde permettent de produire un **gamut** de couleurs allant du presque noir (absence de lumière) au blanc (intensité maximale).
+Each triplet of red, green, and blue LEDs represents a **pixel**. If we arrange a row of 1920 tightly packed pixels horizontally, and do this for 1080 rows, we will have an HD screen of 1920x1080 pixels, or 1920x1080x3 LEDs!
 
-Chaque triplet de LED rouges, vertes et bleues représente un **pixel**. Si nous disposons horizontalement une rangée de 1920 pixels serrés, et que nous le faisons pour 1080 rangées, nous aurons un écran HD de 1920x1080 pixels, ou 1920x1080x3 LEDS !
-
-Le RVB est devenu l'unité standard de représentation des couleurs dans les dispositifs émettant de la lumière, et c'est cette unité que nous utiliserons ici. 
-
-Qu'est-ce qu'une couleur dans notre contexte ? C'est l'intensité du rouge, du vert et du bleu pour un seul pixel ! Il est facile de la représenter à l'aide d'un tuple tridimensionnel :
+RGB has become the standard unit of color representation in light-emitting devices, and this is the unit we will use here.
+What is a color in our context? It is the intensity of red, green, and blue for a single pixel! It is easy to represent using a three-dimensional tuple:
 
 `(red, green, blue)`
 
-Nous sommes libres de décider dans quelle gamme représenter chaque intensité (ou **profondeur de couleur**). Par exemple, si nous utilisons 1 octet (donc un minimum de zéro et un maximum de 255) pour représenter chaque intensité, nous pourrions avoir ce qui suit :
+We are free to decide in which range to represent each intensity (or **color depth**). For example, if we use 1 byte (i.e., a minimum of zero and a maximum of 255) to represent each intensity, we could have the following:
 
 ```
 Red:   (255, 0, 0)
@@ -63,8 +58,7 @@ Green: (0, 255, 0)
 Blue:  (0, 0, 255)
 ```
 
-Nous pourrions également normaliser cette valeur et dire que nous représenterons chaque composant comme un point flottant entre 0 et 1 :
-
+We could also normalize this value and say that we will represent each component as a floating point between 0 and 1:
 
 ```
 Red:   (1, 0, 0)
@@ -72,31 +66,30 @@ Green: (0, 1 0)
 Blue:  (0, 0, 1)
 ```
 
-L'avantage de cette représentation est que l'on peut facilement accumuler les couleurs par simple addition !
+The advantage of this representation is that colors can be easily combined by simple addition!
 
-Qu'obtient-on en mélangeant du rouge et du vert (en lumière, pas en peinture !) ? Du jaune !
+What do you get when you mix red and green (in light, not paint!)? Yellow!
 
 
 ```
 (1, 0, 0) + (0, 1, 0) = (1, 1, 0)
 ```
 
-Il s'agit d'une simple addition vectorielle, qui consiste à ajouter chaque composante du premier vecteur à la composante correspondante du second vecteur.
+This is a simple vector addition, which consists of adding each component of the first vector to the corresponding component of the second vector.
 
-Il y a cependant un problème. Nous ne pouvons jamais avoir une valeur supérieure au maximum. Par conséquent, si nous ajoutons du turquoise à notre jaune, nous obtiendrons simplement du blanc (et non une couleur étrange comme l'octarine) :
+However, there is a problem. We can never have a value greater than the maximum. Therefore, if we add turquoise to our yellow, we will simply get white (and not a strange color like octarine):
 
 
 ```
 (1, 1, 0) + (0, 1, 1) = (1, 1, 1)   // and not (1, 2, 1)
 ```
 
-## Qu'est-ce qu'une image ?
+## What is an image?
+Our goal is to render an **image**, a two-dimensional plane onto which light from the world is projected.
 
-Notre objectif est de rendre une **image**, un plan bidimensionnel sur lequel la lumière du monde est projetée.
+We know that our image is composed of **pixels** (for example, 1920x1808 pixels in total).
 
-Nous savons que notre image est composée de **pixels** (par exemple, 1920x1808 pixels au total).
-
-Une image n'est donc qu'un énorme tableau de tuples de couleurs.
+An image is therefore just a huge array of color tuples.
 
 
 ```
@@ -108,18 +101,16 @@ Une image n'est donc qu'un énorme tableau de tuples de couleurs.
 ]
 ```
 
-L'exemple ci-dessus est une image 2x2 contenant 4 pixels.
+The example above is a 2x2 image containing 4 pixels.
 
-Le but de notre raytracer est donc de calculer la bonne couleur pour chaque pixel, afin qu'il représente fidèlement une projection de la scène !
+The goal of our raytracer is therefore to calculate the correct color for each pixel, so that it accurately represents a projection of the scene!
 
-Une fois que nous avons ce tableau de valeurs RVB, il suffit de le sauvegarder dans un fichier (un bitmap, sans compression, ou un .png pour une compression sans perte)
+Once we have this table of RGB values, we just need to save it to a file (a bitmap, without compression, or a .png for lossless compression).
 
 
+## An algorithm to generate our image
 
-## Un algorithme pour générer notre image
-
-Le pseudo-code suivant peut être utilisé pour générer une image :
-
+The following pseudocode can be used to generate an image:
 
 ```ts
 
@@ -151,12 +142,13 @@ for (let y = 0; y < height; ++y) {
 
 ```
 
-Comment obtenir le **world ray**?
+How do you get the **world ray**?
 
-En fait, c'est assez facile, nous voulons simplement tirer un rayon depuis notre oeil à travers chaque pixel d'une image virtuelle devant notre oeil :
+It's actually quite easy. We simply want to shoot a ray from our eye through each pixel of a virtual image in front of our eye:
 
 ![](./img/image-ray.png)
 
 
-Facile, non ? Eh bien... vous aurez peut-être besoin d'un peu de mathématiques pour mettre en œuvre cet algorithme.
+Easy, right? Well... you might need a little math to implement this algorithm.
+
 
