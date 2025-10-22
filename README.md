@@ -76,7 +76,7 @@ Fortunately, there are a few wise elders who can pass on the almost lost knowled
 * [What is a ray-tracer ?](raytracer/intro.md)
 * [Get started with C++](cpp/intro.md)
 
-## Travail d'équipe
+## Group project
 
 Vous devez travailler en groupe de maximum 4 personnes. Merci de renseigner la constitution de vos groupes ici : [https://docs.google.com/spreadsheets/d/15XxlY-hAXphluYYi91rkFycaz-DHESSliPAoS5DUFLo/edit?usp=sharing](https://docs.google.com/spreadsheets/d/15XxlY-hAXphluYYi91rkFycaz-DHESSliPAoS5DUFLo/edit?usp=sharing)
 
