@@ -84,9 +84,18 @@ Once configured, you will see options in the bottom bar to build and run your ap
 
 ![](img/build.png)
 
-Alternatively, you can navigate to the `build` or `out` directory and type:
+Alternatively, you can navigate to the `build` or `out` directory (create it, if it does not exist) and type:
+
 
 ```bash
+# Create the makefiles and setup the build process
+# Only do this the first time, or if you modify project structure or dependencies
+cmake ..
+```
+
+
+```bash
+# Build the .exe
 make
 ```
 
