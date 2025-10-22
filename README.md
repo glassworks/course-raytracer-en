@@ -4,65 +4,77 @@ cover: >-
 coverY: 0
 ---
 
-# Lanceur de rayon
+# Overview
 
-L'objectif de ce hackathon est de vous initier à l'ingénierie d'un logiciel avancé. Dans votre carrière de Tech-Lead/CTO, on vous demandera de concevoir et de développer des logiciels qui vont au-delà d'un simple site web ou d'une application web avec une base de données et des appels API.
+The goal of this cycle is to introduce you to **advanced software engineering**. In your career as a Tech Lead/CTO, you will be asked to design and develop software that goes beyond a simple website or web application with a database, API and front-end.
+- You will need to develop a **strategic vision**, encompassing :
+  - A vision of the final project you are aiming to produce
+  - A vision of how the project is to be run
+  - A vision of the ressources (time, financial, etc.) needed 
+- You will need to **innovate** :
+  - Be confronted with difficulties and unknowns, and come up with creative solutions
+  - Extract and anticipate client needs and propose creative solutions
+- You will need to **drive and execute** a technically difficult project
+- You will need to **manage a technical team**
 
-En tant qu'ingénieur logiciel, on vous demandera souvent de modéliser un principe scientifique, un principe mathématique, d'émuler des comportements basés sur la physique. Tout cela dans le but de créer un outil utile pour vos clients. Cette tâche peut souvent s'avérer décourageante :
+## Context
 
-* vous devrez apprendre, comprendre les concepts mathématiques, physiques ou autres concepts techniques qui sont en dehors de votre zone de confort
-* vous devrez traduire ces concepts dans votre domaine : structures de données, algorithmes, architecture, ....
-* vous devrez surmonter les problèmes de performance
-* vous devrez fournir un produit qui soit réellement _utile_ à votre client
+As a software engineer, you will often be asked to model a scientific principle, a mathematical principle, or emulate physics-based behaviors. All this with the aim of creating a useful tool for your customers. This task can often be daunting:
 
-Pour ce projet, nous vous jetons dans le grand bain et vous demandons de concevoir un logiciel mathématique complexe ! Ce n'est pas parce que nous sommes sadiques, il y a en fait un certain nombre de compétences vraiment importantes et utiles qui devraient résulter de cet exercice :
+* You will need to learn and understand mathematical, physical, or other technical concepts that are outside your comfort zone.
+* You will need to translate these concepts into your field: data structures, algorithms, architecture, etc.
+* You will need to overcome performance issues
+* You will need to deliver a product that is truly useful to your customer
 
-* la capacité à traduire un principe mathématique en un problème d'ingénierie
-* Choisir et mettre en œuvre de bonnes structures de données, des modèles de conception, et adopter une architecture propre.
-* l'ajout d'un langage de programmation à votre boîte à outils (si vous ne connaissez pas déjà le C++)
-* Être confronté à de sérieux problèmes d'optimisation et essayer de trouver des solutions.
-* Vous efforcer de créer une expérience utilisateur agréable.
+For this project, we are throwing you in at the deep end and asking you to design complex mathematical software! This isn't because we're sadistic; in fact, there are a number of really important and useful skills that should result from this exercise:
 
-Il s'agit d'un projet de groupe, et par conséquent, en tant que futur Tech-Lead/CTO, vous devrez également pratiquer et affiner vos compétences non techniques, mais néanmoins essentielles :
+* The ability to translate a mathematical principle into an engineering problem
+* Choosing and implementing good data structures, design patterns, and adopting a clean architecture.
+* Adding a programming language to your toolbox (if you don't already know C++)
+* Facing serious optimization problems and trying to find solutions.
+* Striving to create a pleasant user experience.
 
-* travailler et coordonner avec d'autres développeurs (planification, délégation, synchronisation, résolution de conflits, ...). Vous êtes libre d'utiliser la philosophie de gestion de projet que vous souhaitez (Agile, Scrum, Kanban, ...).
-* travailler avec un dépôt GIT centralisé
-* révision du code entre collègues
+This is a group project, and as a result, as a future Tech Lead/CTO, you will also need to practice and refine your non-technical, but nonetheless essential, skills:
+* Working and coordinating with other developers (planning, delegation, synchronization, conflict resolution, etc.). You are free to use the project management philosophy of your choice (Agile, Scrum, Kanban, etc.).
+* Working with a centralized GIT repository
+* Code review among colleagues
 
-## Le projet : un "ray-tracer"
 
-Nous sommes en 2035. L'IA et le Chat-GPT ont détruit le marché des compétences techniques. Une génération entière de développeurs « copier-coller » a donné naissance à une multitude de versions de logiciels défectueux. Les géants du rendu d'images par ordinateur sont à genoux. Adobe et Autodesk ont fait faillite. Blender est devenu inutilisable.
+## The project : Ray Tracer
 
-Les principaux studios de cinéma 3D en images de synthèse sont désespérés - ils ont besoin de leurs logiciels pour produire leur prochain film et n'ont nulle part où aller ! Heureusement, vous êtes là pour sauver la situation !
+It's 2035. AI and Chat-GPT have destroyed the market for technical skills. An entire generation of "vibe-coders" has given rise to a multitude of flawed software versions. The giants of computer image rendering are on their knees. Adobe and Autodesk have gone bankrupt. Blender has become unusable.
 
-Votre mission est de créer, à partir des premiers principes, un **traceur de rayons**: un logiciel qui rend des images 3D en simulant la façon dont la lumière rebondit autour d'une scène.
+The major 3D computer graphics studios are desperate—they need their software to produce their next film and have nowhere to turn! Fortunately, you are here to save the day!
 
-<figure><img src=".gitbook/assets/test.png" alt=""><figcaption><p>Exemple d'une scène rendue par un raytracer basique avec 4 niveaux de réflexion. Il y a de la place pour l'amélioration !</p></figcaption></figure>
+Your mission is to create, from first principles, a **ray tracer**: software that renders 3D images by simulating how light bounces around a scene.
 
-Vous disposez d'une semaine pour réaliser ce logiciel. Les studios de cinéma exigent les fonctionnalités suivantes :
+<figure><img src=".gitbook/assets/test.png" alt=""><figcaption><p>Example of a scene rendered by a basic raytracer with 4 levels of reflection. There is room for improvement!</p></figcaption></figure>
 
-* Rendre au moins une **sphère** et un **plan** avec une réflexion complète (c'est-à-dire une sphère totalement métallique qui reflète son environnement), et produire une image unique au format PNG.
-* Vous devez être capable de rendre une image haute résolution d'une scène avec une grande quantité d'objets, et au moins 4 rebonds de lumière. Vous devez mesurer le temps de rendu et l'indiquer dans votre soumission finale. N'oubliez pas qu'un film est composé d'une série d'images statiques. Votre logiciel devra donc rendre des centaines de milliers d'images pour créer le film. La vitesse de rendu est donc un facteur important pour le client !
-* Si vous y parvenez, vous obtiendrez un crédit supplémentaire pour l'un ou l'autre des éléments suivants :
-  * La mise en œuvre d'autres modèles de surface (Blinn, Phong, Gourad, Cook-Torrance).
-  * Rendre d'autres formes, par exemple des cubes, des cylindres, des triangles
-  * Le rendu d'un modèle 3D (au format .obj, .fbx, .collada ou autre)
-  * Stratégies d'optimisation du rendu :
-    * partitionnement de l'espace
-    * Multi-threading ou traitement parallèle
-    * Utilisation du GPU
-    * Multi-traitement (rendu sur un cluster, files d'attente, etc.)
-  * Techniques de rendu de surface plus avancées : texture-mapping, bump-mapping, environment mapping, ...
-  * Un langage structuré de modélisation de la scène (un fichier d'entrée ?) spécifiant la disposition de la scène
-  * Anti-crénelage
+You have two weeks to develop this software. Our client, a renowned LA based film studio, requires the following features:
+
+* Render at least one **sphere** and one **plane** with full reflection (i.e., a fully metallic sphere that reflects its surroundings), and produce a single image in PNG format.
+* You must be able to render a high-resolution image of a scene with a large number of objects and at least 4 light bounces. You must measure the rendering time and include it in your final submission. Remember that a movie is composed of a series of static images. Your software will therefore need to render hundreds of thousands of images to create the movie. **Rendering speed** is therefore an important factor for the client!
+* If you succeed, you will receive additional credit for any of the following:
+  * Implementing other surface models (Blinn, Phong, Gourad, Cook-Torrance).  
+  * Rendering other shapes, such as cubes, cylinders, triangles
+  * Rendering a 3D model (in .obj, .fbx, .collada, or other format)
+  * Rendering optimization strategies:
+    * Space partitioning
+    * Multi-threading or parallel processing
+    * Use of the GPU
+    
+   * Multi-processing (rendering on a cluster, queues, etc.)
+  * More advanced surface rendering techniques: texture mapping, bump mapping, environment mapping, etc.
+  * A structured scene modeling language (an input file?) specifying the layout of the scene
+  * Anti-aliasing
   * ...
 
-Cependant, dans ce futur dystopique, il y a quelques contraintes ! Tous les langages de programmation modernes tels que Go, Python, Java, etc. sont devenus totalement propriétaires - pour les utiliser, vous devez payer d'énormes royalties, ce qui rendra ce projet irréalisable. Vous devez utiliser le seul langage libre restant : C++.
+However, in this dystopian future, there are a few constraints! All modern programming languages such as Go, Python, Java, etc. have become completely proprietary. To use them, you have to pay huge royalties, which will make this project unfeasible. **You must use the only remaining free language: C++**.
 
-Heureusement, il y a quelques vieux sages qui peuvent transmettre des connaissances presque perdues sur ces logiciels fantastiques, qui ont été compilées dans ce guide. Lisez attentivement ces informations !
+Fortunately, there are a few wise elders who can pass on the almost lost knowledge about these fantastic software programs, which has been compiled in this guide. Read this information carefully!
 
-* [Qu'est-ce qu'un lanceur de rayons ?](raytracer/intro.md)
-* [Débuter avec C++](cpp/intro.md)
+* [What is a ray-tracer ?](raytracer/intro.md)
+* [Get started with C++](cpp/intro.md)
 
 ## Travail d'équipe
 
