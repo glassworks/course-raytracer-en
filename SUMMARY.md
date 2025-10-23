@@ -2,18 +2,18 @@
 
 * [Ray Tracer](README.md)
 * [Planning and evaluation](./planning/planning.md)
-* [What is a raytracer ?](what-is-a-raytracer/README.md)
+* What is a raytracer ?
   * [Principles](raytracer/intro.md)
   * [Linear Algebra](raytracer/vector-math.md)
   * [Intersections](raytracer/intersections.md)
   * [Diffuse Shader](raytracer/shading.md)
   * [Reflections](raytracer/reflections.md)
   * [Over to you!](raytracer/etc.md)
-* [Intro to C++](intro-to-c++/README.md)
+* Intro to C++
   * [A simple project](cpp/intro.md)
   * [CPP Class](cpp/class.md)
   * [Export an image](cpp/image.md)
-* [Engineering concepts]
+* Engineering concepts
   * [Strategic Vision and Innovation](./concepts/vision.md)
   * [Driving a technical project](./concepts/driving.md)
   * [Managing a technical team](./concepts/team.md)
