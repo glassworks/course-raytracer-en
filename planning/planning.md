@@ -21,9 +21,9 @@ I will frequently ask you to explain your code, and you will be penalized if you
 | Tuesday 28 October, afternoon | Vision and strategy | Course + discussion (1 hour) |
 | Wednesday 29 October | Piloting a technical project | Course + discussion (1 hour) |
 | Friday 31 October | Evaluation 1: Vision & Strategy  | Group meeting | Yes |
-| Monday 3 November | Work at Hetic, presence for questions and answers | | 
-| Tuesday 4 November | Progress meeting (obligatory) | | Yes |  
-| Friday 7 November | Presentation of final project | Group evaluation in the form of a Client Presentation | Yes |
+| Monday 3 November | Work at Hetic (obligatory), questions and answers | | 
+| Tuesday 4 November | Progress meeting at Hetic (obligatory) | | Yes |  
+| Friday 7 November | Presentation of final project | Group evaluation in the form of a Client Presentation | |
 | - | | |
 | Monday 1 December | New engineering theme related to the Raytracer |  | |
 | Monday 1 December | Individual Code Reviews for the RayTracer (evaluation) | Code Review | Yes |
@@ -32,6 +32,14 @@ I will frequently ask you to explain your code, and you will be penalized if you
 
 
 ## Deliverables
+
+[For this project **it is obligatory to use industry standard tooling** for collaborating with your peers.](../concepts/driving.md#tooling).
+
+{% hint style="success" %}
+Top tip: You may or may not have random spot-checks to see that you have tooling in place and are using it effectively.
+{% endhint %}
+
+The deliverables and dates are as follows :
 
 - **Friday 31 October** : the PDF containing your Vision, [described here](../concepts/vision.md#exercise-for-evaluation)  
 - **Friday 7 October** : Your final presentation package for the client
