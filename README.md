@@ -78,54 +78,19 @@ Fortunately, there are a few wise elders who can pass on the almost lost knowled
 
 ## Group project
 
-You must work in teams of maximum 4 people. [Please specify your teams here.](https://docs.google.com/spreadsheets/d/1qHr7hSANnmTzyi69LXJbhnVzSG8Ipa5p9VCVnAoc07s/edit?usp=sharing)
+You will work in teams of maximum 4 people. 
 
-## Evaluation
+[We have assigned the teams here.](https://docs.google.com/spreadsheets/d/1xKzcXyzHpQOzm9TFE7-oaPGzJ5vjUdCz448B9t-tCd0/edit?usp=sharing)
 
-You have been asked to **build a ray tracer from first principles**, using the C++ programming language.
+Note, we are imposing teams in order to break you out of your confort zones, and force you to work and learn from new people.
 
-{% hint style="warning" %}
-The goal of this project is to develop your engineering skills, your ability to design and execute complex software development. The following are therefore considered contrary to the spirit of the exercise and will not be allowed or accepted:
+## Engineering, strategy and innovation
 
-* Copying or adapting, in any way, existing ray tracer repositories on Git-Hub or elsewhere.
-* Using Chat-GPT, or any other artificial intelligence, to write your code.
+As a future tech-lead and CTO, beyond the notion of developing a product, you will be asked more and more to think strategically and long term. 
 
-I will frequently ask you to explain your code, and you will be penalized if you cannot sufficiently explain your data structure or algorithms.
-{% endhint %}
+This project will force you to confront these topics too :
 
-**Delivery and deliverables**
+  * [Strategic Vision and Innovation](./concepts/vision.md)
+  * [Driving a technical project](./concepts/driving.md)
 
-You will be required to present your software on Friday, 7 November, 2025. You will be required to present the following:
-* The image(s) rendered by your software
-* The total rendering time of your image(s)
-* You will be asked to render an image live in front of the client
-* You will be required to present and explain parts of your code
-* You must provide a link to the GitHub project
 
-**Notation**
-
-Scoring is done à la carte. A functional minimum viable product (MVP) will earn you a passing score. You are then free to implement any techniques you wish to improve your score, up to a maximum of 20 points.
-
-The following rating scale will be used to evaluate the project:
-
-| Aspect                                                              | Note              |
-| ------------------------------------------------------------------- | ----------------- |
-| **Functional base product**                                   |                   |
-| A functional C++ executable                                       | 1                 |
-| A PNG image is produced                                          | 1                 |
-| At a minimum, flat rendering of a sphere is achieved                  | 1                 |
-| At a minimum, diffuse rendering of a sphere is achieved                | 2                 |
-| Rendering of a plane                                                     | 1                 |
-| Reflections                                                          | 2                 |
-| **C++ architecture and code quality**                             |                   |
-| Data structures                                               | 1                 |
-| Clean code                                                          | 1                 |
-| Algorithms used and correctly explained                      | 1                 |
-| **Additional points**                                          |                   |
-| Surface shaders other than diffuse shaders                | 3                 |
-| Rendering of other shapes                                               | 3                 |
-| Rendering of a 3D model (.obj, .fbx, etc.)                              | 3                 |
-| Optimization strategy                                            |  up to 8 points |
-| Advanced surface rendering techniques                             | 3                 |
-| Structured scene modeling language                       | 2                 |
-| Any other feature that is sufficiently explained and implemented | 3                 |
