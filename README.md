@@ -10,7 +10,7 @@ The goal of this cycle is to introduce you to **advanced software engineering**.
 - You will need to develop a **strategic vision**, encompassing :
   - A vision of the final project you are aiming to produce
   - A vision of how the project is to be run
-  - A vision of the ressources (time, financial, etc.) needed 
+  - A vision of the resources (time, financial, etc.) needed 
 - You will need to **innovate** :
   - Be confronted with difficulties and unknowns, and come up with creative solutions
   - Extract and anticipate client needs and propose creative solutions
@@ -26,7 +26,7 @@ As a software engineer, you will often be asked to model a scientific principle,
 * You will need to overcome performance issues
 * You will need to deliver a product that is truly useful to your customer
 
-For this project, we are throwing you in at the deep end and asking you to design complex mathematical software! This isn't because we're sadistic; in fact, there are a number of really important and useful skills that should result from this exercise:
+For this project, we are throwing you in at the deep end and asking you to design complex mathematical software! This isn't because we're mean; in fact, there are a number of really important and useful skills that should result from this exercise:
 
 * The ability to translate a mathematical principle into an engineering problem
 * Choosing and implementing good data structures, design patterns, and adopting a clean architecture.
@@ -35,7 +35,7 @@ For this project, we are throwing you in at the deep end and asking you to desig
 * Striving to create a pleasant user experience.
 
 This is a group project, and as a result, as a future Tech Lead/CTO, you will also need to practice and refine your non-technical, but nonetheless essential, skills:
-* Working and coordinating with other developers (planning, delegation, synchronization, conflict resolution, etc.). You are free to use the project management philosophy of your choice (Agile, Scrum, Kanban, etc.).
+* Working and coordinating with other developers (planning, delegation, synchronization, conflict resolution, etc.)
 * Working with a centralized GIT repository
 * Code review among colleagues
 
@@ -48,7 +48,7 @@ The major 3D computer graphics studios are desperate—they need their software 
 
 Your mission is to create, from first principles, a **ray tracer**: software that renders 3D images by simulating how light bounces around a scene.
 
-<figure><img src=".gitbook/assets/test.png" alt=""><figcaption><p>Example of a scene rendered by a basic raytracer with 4 levels of reflection. There is room for improvement!</p></figcaption></figure>
+<figure><img src=".gitbook/assets/sphere-galaxy-on-plane.png" alt=""><figcaption><p>Example of a scene rendered by a basic raytracer with 4 levels of reflection. There is room for improvement!</p></figcaption></figure>
 
 You have two weeks to develop this software. Our client, a renowned LA based film studio, requires the following features:
 
