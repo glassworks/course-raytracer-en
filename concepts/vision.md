@@ -214,7 +214,7 @@ The rest of the innovative process is actually rather boring :
 
 This course includes a sub-evaluation for the theme "Strategic Vision and Innovation", which will be evaluated in 2 parts:
 
-* Friday 31 November 2025 : An informal group meeting, where you summarise to my your Vision, Goals, Strategy and KPIs. The deliverable of this meeting is a 1 page PDF containing :
+* Friday 31 October 2025 : An informal group meeting, where you summarise to my your Vision, Goals, Strategy and KPIs. The deliverable of this meeting is a 1 page PDF containing :
   * Your group name and number
   * The name and surname of your team members
   * A short description of the client, his needs, and his pain-points (issues) - "problématique"
