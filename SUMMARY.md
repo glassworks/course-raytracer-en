@@ -16,4 +16,4 @@
 * [Engineering concepts](engineering-concepts/README.md)
   * [Strategic Vision and Innovation](concepts/vision.md)
   * [Driving a technical project](concepts/driving.md)
-  * [Managing a technical team](engineering-concepts/managing-a-technical-team.md)
+ 
