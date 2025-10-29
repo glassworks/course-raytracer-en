@@ -12,10 +12,14 @@ Let us try and list together what went well and what did not work well in your l
 
 ## Driving a project
 
-You have probably already had many courses about the Agile manifesto
+You have probably already had many courses about the Agile manifesto ([Full Course Here](agile.pdf)).
 
 {% hint style="success" %}
-**Individuals and interactions** over processes and tools **Working software** over comprehensive documentation **Customer collaboration** over contract negotiation **Responding to change** over following a plan
+
+- **Individuals and interactions** over processes and tools 
+- **Working software** over comprehensive documentation 
+- **Customer collaboration** over contract negotiation 
+- **Responding to change** over following a plan
 
 That is, while there is value in the items on the right, we value the items on the left more.
 {% endhint %}
