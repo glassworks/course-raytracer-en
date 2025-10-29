@@ -69,6 +69,7 @@ Now let's look at the implementation (in `src/raymath/Color.cpp`):
 
 ```cpp
 #include <iostream>
+#include <cmath>
 #include "Color.hpp"
 
 Color:: Color() : r(0), b(0), g(0)

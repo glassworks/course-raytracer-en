@@ -10,6 +10,7 @@ Here is one way to model our image file (in `src/rayimage/Image.hpp`):
 #pragma once
 
 #include <iostream>
+#include <vector>
 #include "../raymath/Color.hpp"
 
 class Image
@@ -34,6 +35,7 @@ And here is the implementation (`src/rayimage/Image.cpp`):
 
 ```cpp
 #include <iostream>
+#include <cmath>
 #include "Image.hpp"
 #include "../lodepng/lodepng.h"
 
